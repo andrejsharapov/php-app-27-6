@@ -17,7 +17,7 @@ function getDatabase(): mysqli
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 /* Open a connection */
-$db_link = getDatabase();
+$db_link = getDatabase() ?? [];
 $db_table = 'users';
 
 mysqli_query($db_link, "SET NAMES 'utf8'");
@@ -25,14 +25,5 @@ mysqli_query($db_link, "SET NAMES 'utf8'");
 /* check connection */
 if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
+    die();
 }
-
-//$query = "SELECT * FROM " . $db_table;
-//$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
-
-//var_dump($result);
-
-//for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row) ;
-
-//return $data;

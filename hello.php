@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!$_SESSION['auth']) {
+if (!$_SESSION['user']) {
     header('location: /');
 }
 ?>
@@ -21,9 +21,9 @@ if (!$_SESSION['auth']) {
 <header class="p-4 flex justify-between bg-blue-500 sticky top-0 z-10">
     <div class="text-xl uppercase font-bold text-white">PHP-APP-27-6</div>
     <ul class="flex gap-4">
-        <?php if (isset($_SESSION['auth'])): ?>
+        <?php if (isset($_SESSION['user'])): ?>
             <li>
-                <a href="logout.php" class="rounded px-2 py-1 text-white uppercase">Выход</a>
+                <a href="forms/logout.php" class="rounded px-2 py-1 text-white uppercase">Выход</a>
             </li>
         <?php endif; ?>
     </ul>
@@ -52,7 +52,11 @@ if (!$_SESSION['auth']) {
     </div>
 </main>
 
-<footer></footer>
+<footer class="lg:absolute right-0 bottom-0 left-0 bg-white py-2 border-t border-2">
+    <p class="text-center">
+        &copy; 2022
+    </p>
+</footer>
 
 </body>
 </html>
