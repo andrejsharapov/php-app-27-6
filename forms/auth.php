@@ -1,4 +1,9 @@
 <?php
+
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use Monolog\Formatter\HtmlFormatter;
+
 session_start();
 
 require_once '../database/db.php';
@@ -6,6 +11,21 @@ require_once '../database/db.php';
 $name = $_POST['login'];
 $password = openssl_digest($_POST['password'], "sha512");
 $token = $_POST['token'];
+
+// Создаем логгер
+$log = new Logger('mylogger');
+
+// Хендлер, который будет писать логи в "mylog.log" и слушать все ошибки с уровнем "WARNING" и выше .
+$log->pushHandler(new StreamHandler('mylog.log', Logger::WARNING));
+
+// Хендлер, который будет писать логи в "troubles.log" и реагировать на ошибки с уровнем "ALERT" и выше.
+$log->pushHandler(new StreamHandler('troubles.log', Logger::ALERT));
+
+
+// Добавляем записи
+$log->warning('Предупреждение');
+$log->error('Большая ошибка');
+$log->info('Просто тест');
 
 if ($_POST["token"] == $_SESSION["CSRF"]) {
     // get user info
