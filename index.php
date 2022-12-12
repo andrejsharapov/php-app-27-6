@@ -2,6 +2,7 @@
 session_start();
 
 require_once 'database/db.php';
+require_once 'database/vk.php';
 
 $token = hash('gost-crypto', random_int(0, 999999));
 $_SESSION["CSRF"] = $token;
@@ -33,7 +34,7 @@ if (isset($_SESSION['user'])) {
 
             if (!empty($result)) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    echo 'Новый пользователь: <strong>' . ucfirst($row["name"]) .'</strong>';
+                    echo 'Новый пользователь: <strong>' . ucfirst($row["name"]) . '</strong>';
                 }
             }
             ?>
@@ -104,11 +105,12 @@ if (isset($_SESSION['user'])) {
                 </div>
                 <div class="w-full inline-flex justify-between">
                     <input type="submit" value="Вход"
-                           class="mt-4 cursor-pointer shadow bg-blue-500 hover:bg-gray-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
-                    <button type="button"
-                            class="mt-4 cursor-pointer shadow bg-indigo-700 hover:bg-indigo-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
-                        Войти с VK
-                    </button>
+                           class="mt-4 cursor-pointer shadow bg-blue-500 hover:bg-gray-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                    >
+                    <!-- Выводим на экран ссылку для открытия окна диалога авторизации -->
+                    <?php
+                    echo '<a href="http://oauth.vk.com/authorize?' . http_build_query($params) . '" class="mt-4 cursor-pointer shadow bg-indigo-700 hover:bg-indigo-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">Войти с VK</a>';
+                    ?>
                 </div>
             </form>
 
