@@ -1,7 +1,9 @@
 <?php
 session_start();
 
-if (!$_SESSION['user']) {
+$user = $_SESSION['user'];
+
+if (!$user) {
     header('location: /');
 }
 ?>
@@ -13,7 +15,7 @@ if (!$_SESSION['user']) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hello, <?php echo ucfirst($_SESSION['name']) ?>!</title>
+    <title>Hello, <?php echo ucfirst($user['name']) ?>!</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="m-0 min-h-screen flex flex-col dark:bg-gray-800 dark:text-gray-300">
@@ -21,7 +23,7 @@ if (!$_SESSION['user']) {
 <header class="p-4 flex justify-between bg-blue-500 sticky top-0 z-10">
     <div class="text-xl uppercase font-bold text-white">PHP-APP-27-6</div>
     <ul class="flex gap-4">
-        <?php if (isset($_SESSION['user'])): ?>
+        <?php if (isset($user)): ?>
             <li>
                 <a href="forms/logout.php" class="rounded px-2 py-1 text-white uppercase">Выход</a>
             </li>
