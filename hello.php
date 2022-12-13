@@ -15,7 +15,7 @@ if (!$user) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hello, <?php echo ucfirst($user['name']) ?>!</title>
+    <title>Hello, <?php echo ucfirst($user['name'] ?? "vk user №" . $user['id']) ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/assets/app.css">
 </head>
@@ -49,9 +49,11 @@ if (!$user) {
             sunt?
         </p>
         <!-- Show if VK -->
-        <div class="rounded overflow-hidden">
-            <img src="https://picsum.photos/1600/400?random" alt="">
-        </div>
+        <?php if ($user['role'] === 'vk'): ?>
+            <div class="rounded overflow-hidden">
+                <img src="https://picsum.photos/1600/400?random" alt="">
+            </div>
+        <?php endif; ?>
     </div>
 </main>
 
