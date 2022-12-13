@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once '../database/db.php';
+require_once __DIR__ . '/../database/db.php';
 
 $name = $_POST['login'];
 $password = openssl_digest($_POST['password'], "sha512");
@@ -21,6 +21,7 @@ if ($_POST["token"] == $_SESSION["CSRF"]) {
             'email' => $user['email'],
             'password' => openssl_digest($user['password'], "sha512"),
             'date' => $user['date'],
+            'role' => $user['role'],
         ];
 
         $_SESSION['checkAuth'] = 'Авторизация прошла успешно.';
@@ -31,11 +32,3 @@ if ($_POST["token"] == $_SESSION["CSRF"]) {
         header('location: /');
     }
 }
-?>
-
-<pre>
-    <?php
-//        print_r($auth);
-//        print_r($user);
-    ?>
-</pre>
