@@ -1,3 +1,4 @@
+-- create users table (with error in password)
 CREATE TABLE users
 (
     id       serial PRIMARY KEY,
@@ -7,35 +8,33 @@ CREATE TABLE users
     date     DATE         not null
 );
 
---
+-- fix password error (use hash)
 ALTER TABLE users
     MODIFY COLUMN password
     VARCHAR (256) NOT NULL
 ;
 
---
-DELETE FROM users;
-ALTER TABLE users AUTO_INCREMENT = 1;
+-- tests
+-- DELETE FROM users;
+-- ALTER TABLE users AUTO_INCREMENT = 1;
+-- DROP TABLE users;
 
---
-DROP TABLE users;
-
---
+-- add new columns for users rules
 ALTER TABLE users
     ADD COLUMN role VARCHAR(30)
 --     DROP COLUMN role
 ;
 
---
+-- set default role
 ALTER TABLE users
     ALTER role
         SET DEFAULT 'user'
 ;
 
---
+-- add a role if there is a previously created user
 UPDATE users
 SET role = 'user'
 WHERE id = 1;
 
---
+-- show table
 SELECT * FROM users;
