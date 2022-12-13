@@ -4,5 +4,12 @@
 
 body {
     margin: 0;
+    max-width: 100%;
+    overflow-x: hidden;
     min-height: 100vh;
+}
+
+text {
+    word-break: break-word;
+    background-color: #fffcc1;
 }
