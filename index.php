@@ -4,7 +4,12 @@ session_start();
 require_once __DIR__ . '/database/db.php';
 require_once __DIR__ . '/vk.php';
 
-$token = hash('gost-crypto', random_int(0, 999999));
+if (!isset($_SESSION['token'])) {
+    $token = hash('gost-crypto', random_int(0, 999999));
+} else {
+    $token = $_SESSION['token'];
+}
+
 $_SESSION["CSRF"] = $token;
 
 if (isset($_SESSION['user'])) {
