@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once 'database/db.php';
-require_once 'database/vk.php';
+require_once __DIR__ . '/database/db.php';
+require_once __DIR__ . '/vk.php';
 
 $token = hash('gost-crypto', random_int(0, 999999));
 $_SESSION["CSRF"] = $token;
@@ -51,7 +51,7 @@ if (isset($_SESSION['user'])) {
 
     <div class="grid lg:grid-cols-2 items-stretch divide-x divide-2 w-full min-h-screen">
         <!-- register -->
-        <div class="pt-48 px-6 w-full mx-auto">
+        <div class="pb-12 pt-48 px-6 w-full mx-auto">
             <h2 class="text-4xl mb-4">Регистрация</h2>
             <form method="post" action="forms/reg.php" class="mx-auto">
                 <div class="w-full inline-flex flex-col gap-y-4">
@@ -71,10 +71,10 @@ if (isset($_SESSION['user'])) {
                 <div class="w-full inline-flex justify-between">
                     <input type="submit" value="Регистрация"
                            class="mt-4 cursor-pointer shadow bg-blue-500 hover:bg-gray-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
-                    <button type="button"
-                            class="mt-4 cursor-pointer shadow bg-indigo-700 hover:bg-indigo-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
-                        Авторизоваться через VK
-                    </button>
+                    <!-- Выводим на экран ссылку для открытия окна диалога авторизации -->
+                    <?php
+                    echo $_SESSION['VK'];
+                    ?>
                 </div>
             </form>
 
@@ -89,7 +89,7 @@ if (isset($_SESSION['user'])) {
         </div>
 
         <!-- auth -->
-        <div class="pt-48 px-6 w-full mx-auto">
+        <div class="pb-12 pt-48 px-6 w-full mx-auto">
             <h2 class="text-4xl mb-4">Вход</h2>
             <form method="post" action="forms/auth.php" class="mx-auto">
                 <div class="w-full inline-flex flex-col gap-y-4">
@@ -109,7 +109,7 @@ if (isset($_SESSION['user'])) {
                     >
                     <!-- Выводим на экран ссылку для открытия окна диалога авторизации -->
                     <?php
-                    echo '<a href="http://oauth.vk.com/authorize?' . http_build_query($params) . '" class="mt-4 cursor-pointer shadow bg-indigo-700 hover:bg-indigo-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">Войти с VK</a>';
+                    echo $_SESSION['VK'];
                     ?>
                 </div>
             </form>
