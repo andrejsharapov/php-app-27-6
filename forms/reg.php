@@ -20,7 +20,7 @@ function register(array $data): array
 //get user info
 $user = register($_POST);
 
-var_dump($user);
+// var_dump($user);
 
 // check login in database
 $findUserName = "SELECT * FROM `users` WHERE name = '$user[name]'";
