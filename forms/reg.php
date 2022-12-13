@@ -28,7 +28,7 @@ $result = mysqli_query($db_link, $findUserName) or die(mysqli_error($db_link));
 $rows = mysqli_num_rows($result) > 0;
 
 if ($rows) {
-    $_SESSION['checkReg'] = 'Пользователь с таким логином уже зарегистрирован.';
+    $_SESSION['checkReg'] = 'Пользователь с таким логином уже существует.';
 } else {
     $query = mysqli_prepare($db_link, "INSERT INTO " . $db_table . " (name, email, password, date) " . " VALUES (?, ?, ?, ?)");
 
