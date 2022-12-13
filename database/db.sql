@@ -19,7 +19,7 @@ ALTER TABLE users
 -- ALTER TABLE users AUTO_INCREMENT = 1;
 -- DROP TABLE users;
 
--- add new columns for users rules
+-- add new column for users roles
 ALTER TABLE users
     ADD COLUMN role VARCHAR(30)
 --     DROP COLUMN role
