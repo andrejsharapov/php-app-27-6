@@ -1,15 +1,16 @@
 {
-  "name": "andrejsharapov/php-app-27-6",
-  "description": "Backend learning: app for module 27.6",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "andrejsharapov",
-      "email": "an.sharapov90@gmail.com"
+    "name": "andrejsharapov/php-app-27-6",
+    "description": "Backend learning: app for module 27.6",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "andrejsharapov",
+            "email": "an.sharapov90@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "monolog/monolog": "^2.5"
     }
-  ],
-  "minimum-stability": "dev",
-  "require": {
-    "monolog/monolog": "^2.5"
-  }
 }
