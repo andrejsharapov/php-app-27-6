@@ -22,6 +22,21 @@ $user = register($_POST);
 
 // var_dump($user);
 
+if (empty($_POST['login']) || empty($_POST['password'])) {
+    $_SESSION['errors'] = 'red';
+}
+
+if (empty($_POST['login'])) {
+    $_SESSION['checkReg'] = 'Придумайте логин для входа.';
+}
+
+if (empty($_POST['password'])) {
+    $_SESSION['checkReg'] = 'Заполните поле для ввода пароля.';
+}
+
+if (!empty($_POST['login']) && !empty($_POST['password'])) {
+  unset($_SESSION['errors']);
+
 // check login in database
 $findUserName = "SELECT * FROM `users` WHERE name = '$user[name]'";
 $result = mysqli_query($db_link, $findUserName) or die(mysqli_error($db_link));
@@ -40,6 +55,7 @@ if ($rows) {
     if ($query) {
         $_SESSION['checkReg'] = 'Вы успешно зарегистрированы!';
     }
+  }
 }
 
 header('location: /');
