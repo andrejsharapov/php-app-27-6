@@ -133,7 +133,7 @@ if (isset($_SESSION['user'])) {
 
 <footer class="lg:absolute right-0 bottom-0 left-0 bg-white py-2 border-t border-2">
     <p class="text-center">
-        &copy; 2022
+        &copy; 2022 by Andrej Sharapov. <a href="https://github.com/andrejsharapov/php-app-27-6" title="GitHub project" target="_blank">GitHub</a>.
     </p>
 </footer>
 
