@@ -13,8 +13,8 @@ $token = $_POST['token'];
 // check token
 if ($_POST["token"] == $_SESSION["CSRF"]) {
     // get user info
-    $findUserName = "SELECT * FROM " . $db_table . " WHERE `name` = '$name' AND `password` = '$password'";
-    $auth = mysqli_query($db_link, $findUserName) or die(mysqli_error($db_link));
+    $checkUser = "SELECT * FROM " . $db_table . " WHERE `name` = '$name' AND `password` = '$password'";
+    $auth = mysqli_query($db_link, $checkUser) or die(mysqli_error($db_link));
 
     // check user in database
     if (mysqli_num_rows($auth) > 0) {
@@ -34,18 +34,25 @@ if ($_POST["token"] == $_SESSION["CSRF"]) {
 
         header('location: /hello.php');
     } else {
-        // create new logger
+        $checkUserName = "SELECT * FROM " . $db_table . " WHERE `name` = '$name'";
+        $userName = mysqli_query($db_link, $checkUserName) or die(mysqli_error($db_link));
+
+        if (mysqli_num_rows($userName) > 0) {
+            $_SESSION['checkAuth'] = 'Введен не правильный пароль.';
+
+            // create new logger
 //        $log = new Logger('AUTH LOGGER');
 
-        // set handlers
+            // set handlers
 //        $log->pushHandler(new StreamHandler(__DIR__ . 'auth.log', Logger::INFO));
 //        $log->pushHandler(new StreamHandler(__DIR__ . 'warn.log', Logger::WARNING));
 
-        // add records
+            // add records
 //        $log->info('Ошибка авторизации', array('user' => $name, 'datetime' => (new DateTime())->format('Y-m-d H:i:s'), 'password' => $password));
-        //$log->warning('Предупреждение');
-
-        $_SESSION['checkAuth'] = 'Не верный логин или пароль.';
+            //$log->warning('Предупреждение');
+        } else {
+            $_SESSION['checkAuth'] = 'Не верный логин или пароль.';
+        }
 
         header('location: /');
     }
