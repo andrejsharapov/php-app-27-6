@@ -45,3 +45,8 @@ The helpers.
 - [vk dev](https://dev.vk.com/api/getting-started)
 - [access rights](https://dev.vk.com/reference/access-rights)
 - [authorization](https://dev.vk.com/api/access-token/authcode-flow-user)
+
+### Composer & Monolog
+
+- [composer](https://getcomposer.org/)
+- [monolog](https://packagist.org/packages/monolog/monolog)
