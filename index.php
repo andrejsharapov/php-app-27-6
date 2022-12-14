@@ -85,7 +85,7 @@ if (isset($_SESSION['user'])) {
 
             <?php
             if (!empty($_SESSION['checkReg'])) {
-                echo '<div class="mt-5 rounded p-3 border border-gray-200">';
+                echo "<div class='mt-5 rounded p-3 border border-$_SESSION[errors]-200 bg-$_SESSION[errors]-50 text-$_SESSION[errors]-600 font-medium'>";
                 echo $_SESSION['checkReg'];
                 unset($_SESSION['checkReg']);
                 echo '</div>';
