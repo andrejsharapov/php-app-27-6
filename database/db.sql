@@ -1,3 +1,11 @@
+SHOW DATABASES;
+
+-- create database
+CREATE DATABASE php_app_27_6;
+USE php_app_27_6;
+
+SHOW TABLES;
+
 -- create users table (with error in password)
 CREATE TABLE users
 (
