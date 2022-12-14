@@ -1,10 +1,11 @@
 <?php
 session_start();
 
-//use Monolog\Logger;
-//use Monolog\Handler\StreamHandler;
-
+require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../database/db.php';
+
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 $name = $_POST['login'];
 $password = !empty($_POST['password']) ? openssl_digest($_POST['password'], "sha512") : null;
@@ -42,15 +43,13 @@ if ($_POST["token"] == $_SESSION["CSRF"]) {
             $_SESSION['checkAuth'] = 'Введен не правильный пароль.';
 
             // create new logger
-//        $log = new Logger('AUTH LOGGER');
+            $log = new Logger('AUTH_LOGGER');
 
             // set handlers
-//        $log->pushHandler(new StreamHandler(__DIR__ . 'auth.log', Logger::INFO));
-//        $log->pushHandler(new StreamHandler(__DIR__ . 'warn.log', Logger::WARNING));
+            $log->pushHandler(new StreamHandler(__DIR__ . '/../logs/auth.log', Logger::INFO));
 
             // add records
-//        $log->info('Ошибка авторизации', array('user' => $name, 'datetime' => (new DateTime())->format('Y-m-d H:i:s'), 'password' => $password));
-            //$log->warning('Предупреждение');
+            $log->info('auth errors:', array('user' => $name, 'datetime' => (new DateTime())->format('Y-m-d H:i:s'), 'password' => $password));
         } else {
             $_SESSION['checkAuth'] = 'Не верный логин или пароль.';
         }
