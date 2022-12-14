@@ -34,6 +34,7 @@ if ($_POST["token"] == $_SESSION["CSRF"]) {
 
         header('location: /hello.php');
     } else {
+        $_SESSION['errors'] = 'red';
         $checkUserName = "SELECT * FROM " . $db_table . " WHERE `name` = '$name'";
         $userName = mysqli_query($db_link, $checkUserName) or die(mysqli_error($db_link));
 
