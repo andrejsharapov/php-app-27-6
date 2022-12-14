@@ -44,6 +44,7 @@ $rows = mysqli_num_rows($result) > 0;
 
 if ($rows) {
     $_SESSION['checkReg'] = 'Пользователь с таким логином уже существует.';
+    $_SESSION['errors'] = 'blue';
 } else {
     $query = mysqli_prepare($db_link, "INSERT INTO " . $db_table . " (name, email, password, date) " . " VALUES (?, ?, ?, ?)");
 
@@ -54,6 +55,7 @@ if ($rows) {
 
     if ($query) {
         $_SESSION['checkReg'] = 'Вы успешно зарегистрированы!';
+        $_SESSION['errors'] = 'green';
     }
   }
 }
