@@ -61,14 +61,14 @@ if (isset($_SESSION['user'])) {
 </header>
 
 <main>
-    <div class="lg:absolute top-16 right-12 left-12 bg-blue-400 text-white mix-blend-multiply rounded-lg overflow-hidden">
+    <div class="lg:absolute top-16 right-6 left-6 bg-cyan-200 text-white mix-blend-multiply rounded-lg overflow-hidden">
         <div class="text-center text-5xl font-extrabold pt-3 pb-5 lg:pl-12">
             Welcome to PHP App 27-6
         </div>
     </div>
 
-    <div class="grid lg:grid-cols-2 items-stretch divide-x divide-2 w-full min-h-screen bg-blue-600 bg-no-repeat bg-cover bg-left-top"
-         style="background-image: url(https://images.unsplash.com/photo-1505759600237-87aaf407ab96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80)"
+    <div class="grid lg:grid-cols-2 items-stretch divide-x divide-2 w-full min-h-screen bg-blue-600 bg-no-repeat bg-cover bg-center"
+         style="background-image: url(https://images.unsplash.com/photo-1597619675900-43c13d6314be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80)"
     >
         <!-- register -->
         <div class="pb-12 pt-48 px-6 w-full mx-auto hover:bg-white text-white hover:text-gray-900 transition ease-in-out delay-200 duration-300">
