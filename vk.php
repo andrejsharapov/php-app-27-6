@@ -101,4 +101,6 @@ if (empty($_GET['code'])) {
         // $e
         die();
     }
+
+    header('location: /hello.php');
 }
