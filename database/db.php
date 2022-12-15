@@ -1,8 +1,8 @@
 <?php
 
+require_once __DIR__ . '/../dotenv.php';
+
 /**
- * DATABASE
- *
  * @return mysqli
  */
 function getDatabase(): mysqli
@@ -11,7 +11,7 @@ function getDatabase(): mysqli
     $dp_port = '3306';
     $db_database = 'php_app_27_6';
     $db_username = 'root';
-    $db_password = ''; // TODO: Remove me
+    $db_password = $_ENV['DB_PASSWORD'];
 
     return new mysqli($db_host, $db_username, $db_password, $db_database);
 }

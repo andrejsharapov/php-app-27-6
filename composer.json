@@ -11,6 +11,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "monolog/monolog": "^2.5"
+        "monolog/monolog": "^2.5",
+        "vlucas/phpdotenv": "^5.5"
     }
 }
