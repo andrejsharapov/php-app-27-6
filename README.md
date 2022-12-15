@@ -46,10 +46,11 @@ The helpers.
 - [access rights](https://dev.vk.com/reference/access-rights)
 - [authorization](https://dev.vk.com/api/access-token/authcode-flow-user)
 
-### Composer & Monolog
+### Composer
 
 - [composer](https://getcomposer.org/)
 - [monolog](https://packagist.org/packages/monolog/monolog)
+- [phpdotenv](https://github.com/vlucas/phpdotenv)
 
 ### Images
 
