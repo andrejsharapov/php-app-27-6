@@ -8,7 +8,7 @@ require_once __DIR__ . '/../dotenv.php';
 function getDatabase(): mysqli
 {
     $db_host     = $_ENV['DB_HOST'];
-    $dp_port     = $_ENV['DP_PORT'];
+    $dp_port     = $_ENV['DB_PORT'];
     $db_database = $_ENV['DB_DATABASE'];
     $db_username = $_ENV['DB_USERNAME'];
     $db_password = $_ENV['DB_PASSWORD'];
