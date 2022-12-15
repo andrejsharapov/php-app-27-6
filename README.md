@@ -24,7 +24,13 @@ App for Module 27.6
 php -S localhost:8080
 ```
 
-## Links
+### GitHub Codespaces
+
+```bash
+php -S 127.0.0.1:8080
+```
+
+## Links and Helpers
 
 > **Note**  
 > Follow the instructions [here to connect](database/db.sql) to the database.
