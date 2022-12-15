@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../../database/db.php';
 require_once __DIR__ . '/../../vk.php';
 
+$app_name = $_ENV['APP_NAME'];
 ?>
 
 <!doctype html>
@@ -12,7 +13,7 @@ require_once __DIR__ . '/../../vk.php';
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?= $page['title']; ?></title>
+    <title><?= $page['title'] . ' | ' . $app_name; ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../../assets/app.css">
 </head>
@@ -22,7 +23,7 @@ require_once __DIR__ . '/../../vk.php';
 <header class="flex flex-col sm:flex-row gap-y-4 justify-between items-center px-4 py-3 z-10 bg-white shadow-md">
     <div>
         <?php
-        $query = "SELECT * FROM " . $db_table . " ORDER BY id DESC LIMIT 1";
+        $query  = "SELECT * FROM " . $db_table . " ORDER BY id DESC LIMIT 1";
         $result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 
         if (!empty($result)) {
