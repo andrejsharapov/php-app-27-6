@@ -53,5 +53,5 @@ The helpers.
 
 ### Images
 
-- [picsum](https://picsum.photos/1600/400?random))
+- [picsum](https://picsum.photos/1600/400?random)
 - [storyset](https://storyset.com/)
