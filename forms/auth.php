@@ -32,6 +32,7 @@ if ($_POST["token"] == $_SESSION["CSRF"]) {
         ];
 
         $_SESSION['checkAuth'] = 'Авторизация прошла успешно.';
+        $_SESSION['errors'] = 'green';
 
         header('location: /hello.php');
     } else {
