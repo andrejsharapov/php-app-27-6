@@ -12,7 +12,7 @@ if (isset($_SESSION['user'])) {
 }
 
 $page = array(
-  'title' => 'Регистрация и вход'
+  'title' => 'Registration and login'
 );
 ?>
 
