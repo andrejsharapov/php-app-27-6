@@ -10,10 +10,10 @@ require_once __DIR__ . '/../database/db.php';
 function register(array $data): array
 {
     return [
-        'name' => $data['login'] ?? null,
-        'email' => $data['email'] ?? '',
+        'name'     => $data['login'] ?? null,
+        'email'    => $data['email'] ?? '',
         'password' => openssl_digest($data['password'], "sha512") ?? null,
-        'date' => (new DateTime())->format('Y-m-d H:i:s') ?? null,
+        'date'     => (new DateTime())->format('Y-m-d H:i:s') ?? null,
     ];
 }
 
@@ -55,7 +55,7 @@ if ($rows) {
 
     if ($query) {
         $_SESSION['checkReg'] = 'Вы успешно зарегистрированы!';
-        $_SESSION['errors'] = 'green';
+        $_SESSION['errors']   = 'green';
     }
   }
 }

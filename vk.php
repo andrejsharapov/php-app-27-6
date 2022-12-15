@@ -1,30 +1,36 @@
 <?php
 session_start();
 
+require_once __DIR__ . '/dotenv.php';
+
 class VkAuth
 {
     // app params
-    public $appId = 51502000;
-    protected $appSecretKey = ''; // TODO: Remove me
-    public $redirectUri = 'http://localhost:8080/';
+    public $appId;
+    protected $appSecretKey;
+    public $redirectUri;
+
+    public function __construct()
+    {
+        $this->appId        = $_ENV['APP_ID'];
+        $this->appSecretKey = $_ENV['APP_SECRET_KEY'];
+        $this->redirectUri  = $_ENV['REDIRECT_URI'];
+    }
 
     /**
      * @return string
      */
-    function auth(): string
+    public function auth(): string
     {
         // build auth link
         $params = [
-            'client_id' => $this->appId,
+            'client_id'     => $this->appId,
             'client_secret' => $this->appSecretKey,
-            'v' => '5.131', // '5.126',
+            'v'             => '5.131',
             'response_type' => 'code',
-            'redirect_uri' => $this->redirectUri,
-            'scope' => 'email',
+            'redirect_uri'  => $this->redirectUri,
+            'scope'         => 'email',
         ];
-
-        // print(http_build_query($params));
-        // die();
 
         return "https://oauth.vk.com/authorize?" . http_build_query($params);
     }
@@ -34,14 +40,14 @@ class VkAuth
      * @return mixed
      * @throws Exception
      */
-    function accessToken($code)
+    public function accessToken($code)
     {
         // get access_token
         $params = [
-            'client_id' => $this->appId,
+            'client_id'     => $this->appId,
             'client_secret' => $this->appSecretKey,
-            'redirect_uri' => $this->redirectUri,
-            'code' => $code,
+            'redirect_uri'  => $this->redirectUri,
+            'code'          => $code,
         ];
 
         // знак (@) позволяет выключить уведомление об ошибке
@@ -65,26 +71,19 @@ class VkAuth
 
 $vk = new VkAuth();
 
-// var_dump($_GET['code']);
-
 if (empty($_GET['code'])) {
-//    echo "<a href='" . $vk->auth() . "' class='mt-4 cursor-pointer shadow bg-indigo-700 hover:bg-indigo-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded'>Вход с VK ID</a>";
     $_SESSION['VK'] = "<a href='" . $vk->auth() . "' class='mt-4 cursor-pointer shadow bg-indigo-700 hover:bg-indigo-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded'>Вход с VK ID</a>";
 } else {
     $_SESSION['VK'] = "Вы уже авторизованы";
 
     try {
-        $data = $vk->accessToken($_GET['code']);
-
+        $data     = $vk->accessToken($_GET['code']);
         $response = $data;
-        // var_dump($response);
-
-        $token = $response['access_token'];
-        // var_dump($token);
+        $token    = $response['access_token'];
 
         if (isset($token)) {
             $expiresIn = $response['expires_in']; // token lifetime - 86399 (сутки)
-            $userId = $response['user_id'];
+            $userId    = $response['user_id'];
             $userEmail = $response['email'];
 
             // save token
@@ -92,12 +91,10 @@ if (empty($_GET['code'])) {
 
             // save info as user session
             $_SESSION['user'] = [
-                'id' => $userId,
+                'id'    => $userId,
                 'email' => $userEmail,
-                'role' => 'vk',
+                'role'  => 'vk',
             ];
-
-            // var_dump($_SESSION['user']);
         }
 
     } catch (Exception $e) {

@@ -23,16 +23,16 @@ if ($_POST["token"] == $_SESSION["CSRF"]) {
 
         // write data to session
         $_SESSION['user'] = [
-            'id' => $user['id'],
-            'name' => $user['name'],
-            'email' => $user['email'],
+            'id'       => $user['id'],
+            'name'     => $user['name'],
+            'email'    => $user['email'],
             'password' => openssl_digest($user['password'], "sha512"),
-            'date' => $user['date'],
-            'role' => $user['role'],
+            'date'     => $user['date'],
+            'role'     => $user['role'],
         ];
 
         $_SESSION['checkAuth'] = 'Авторизация прошла успешно.';
-        $_SESSION['errors'] = 'green';
+        $_SESSION['errors']    = 'green';
 
         header('location: /hello.php');
     } else {
