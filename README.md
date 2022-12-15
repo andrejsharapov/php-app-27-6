@@ -50,3 +50,8 @@ The helpers.
 
 - [composer](https://getcomposer.org/)
 - [monolog](https://packagist.org/packages/monolog/monolog)
+
+### Images
+
+- [picsum](https://picsum.photos/1600/400?random))
+- [storyset](https://storyset.com/)
