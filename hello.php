@@ -6,34 +6,23 @@ $user = $_SESSION['user'];
 if (!$user) {
     header('location: /');
 }
+
+$page = array(
+  'title' => 'Hello, ' . ucfirst($user['name'] ?? "vk user №" . $user['id'])
+);
 ?>
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hello, <?php echo ucfirst($user['name'] ?? "vk user №" . $user['id']) ?></title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/assets/app.css">
-</head>
-<body class="m-0 min-h-screen flex flex-col dark:bg-gray-800 dark:text-gray-300">
-
-<header class="p-4 flex justify-between bg-blue-500 sticky top-0 z-10">
-    <div class="text-xl uppercase font-bold text-white">PHP-APP-27-6</div>
-    <ul class="flex gap-4">
-        <?php if (isset($user)): ?>
-            <li>
-                <a href="forms/logout.php" class="rounded px-2 py-1 text-white uppercase">Выход</a>
-            </li>
-        <?php endif; ?>
-    </ul>
-</header>
+<?php include 'layouts/components/header.php'; ?>
 
 <main class="w-full h-full flex items-center flex-grow">
     <div class="w-2/3 mx-auto py-6">
+        <!-- Show if VK -->
+        <?php if ($user['role'] === 'vk'): ?>
+            <div class="rounded overflow-hidden">
+                <img src="src/hello.svg" class="hidden lg:block w-full max-w-lg mx-auto" alt="hello">
+            </div>
+        <?php endif; ?>
+
         <!-- View All -->
         <p class="mb-4">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias consequuntur corporis dolorem
@@ -48,20 +37,7 @@ if (!$user) {
             officia officiis omnis perferendis porro repellat soluta temporibus unde, velit voluptate! Quos soluta,
             sunt?
         </p>
-        <!-- Show if VK -->
-        <?php if ($user['role'] === 'vk'): ?>
-            <div class="rounded overflow-hidden">
-                <img src="https://picsum.photos/1600/400?random" alt="">
-            </div>
-        <?php endif; ?>
     </div>
 </main>
 
-<footer class="lg:absolute right-0 bottom-0 left-0 bg-white py-2 border-t border-2">
-    <p class="text-center">
-        &copy; 2022
-    </p>
-</footer>
-
-</body>
-</html>
+<?php include 'layouts/components/footer.php'; ?>
