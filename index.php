@@ -62,7 +62,7 @@ $page = array(
 
             <?php
             if (!empty($_SESSION['checkReg'])) {
-                echo "<div class='max-w-lg mx-auto mt-5 rounded p-3 border border-$_SESSION[errors]-200 bg-$_SESSION[errors]-50 text-$_SESSION[errors]-600 font-medium'>";
+                echo "<div class='snackbar shadow-md max-w-lg mx-auto mt-5 rounded p-3 border border-$_SESSION[errors]-200 bg-$_SESSION[errors]-50 text-$_SESSION[errors]-600 font-medium'>";
                 echo $_SESSION['checkReg'];
                 unset($_SESSION['checkReg']);
                 echo '</div>';
@@ -102,7 +102,7 @@ $page = array(
 
             <?php
             if (!empty($_SESSION['checkAuth'])) {
-                echo "<div class='max-w-lg mx-auto mt-5 rounded p-3 border border-$_SESSION[errors]-200 bg-$_SESSION[errors]-50 text-$_SESSION[errors]-600 font-medium'>";
+                echo "<div class='snackbar shadow-md max-w-lg mx-auto mt-5 rounded p-3 border border-$_SESSION[errors]-200 bg-$_SESSION[errors]-50 text-$_SESSION[errors]-600 font-medium'>";
                 echo $_SESSION['checkAuth'];
                 unset($_SESSION['checkAuth']);
                 echo '</div>';

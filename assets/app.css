@@ -1,15 +1,51 @@
+:root {
+    --snakebar-b: 4rem;
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
 
 body {
-    margin: 0;
     max-width: 100%;
     overflow-x: hidden;
-    min-height: 100vh;
 }
 
 text {
     word-break: break-word;
     background-color: #fffcc1;
 }
+
+.snackbar {
+    position: fixed;
+    z-index: 4;
+    bottom: var(--snakebar-b);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 250px;
+    padding: 1rem;
+    text-align: center;
+    animation: fade-in 0.5s, fade-out 0.5s 2.5s;
+}
+
+@keyframes fade-in {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: var(--snakebar-b);
+        opacity: 1;
+    }
+}
+
+/*@keyframes fade-out {*/
+/*    from {*/
+/*        bottom: 30px;*/
+/*        opacity: 1;*/
+/*    }*/
+/*    to {*/
+/*        bottom: 0;*/
+/*        opacity: 0;*/
+/*    }*/
+/*}*/
